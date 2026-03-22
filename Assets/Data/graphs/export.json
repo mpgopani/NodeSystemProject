@@ -1,0 +1,89 @@
+{
+    "graphId": "c6e78e98-bb02-4b63-be11-4b6524939af3",
+    "graphName": "MyGraph",
+    "startNodeId": "a0751e2d-2166-4be4-82a6-037dfd7202f3",
+    "nodes": [
+        {
+            "nodeId": "a0751e2d-2166-4be4-82a6-037dfd7202f3",
+            "nodeName": "CreateCube_0",
+            "nodeType": "NodeSystem.Nodes.CreateCubeNode",
+            "nextNodeId": "cb02aba5-6bd4-4f23-bd51-f6b50ec5ac51",
+            "editorPosition": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "fields": [
+                {
+                    "fieldName": "position",
+                    "fieldType": "UnityEngine.Vector3",
+                    "fieldValue": "(0.00, 0.00, 0.00)"
+                },
+                {
+                    "fieldName": "nodeId",
+                    "fieldType": "System.String",
+                    "fieldValue": "a0751e2d-2166-4be4-82a6-037dfd7202f3"
+                },
+                {
+                    "fieldName": "nodeName",
+                    "fieldType": "System.String",
+                    "fieldValue": "CreateCube_0"
+                },
+                {
+                    "fieldName": "editorPosition",
+                    "fieldType": "UnityEngine.Vector2",
+                    "fieldValue": "(0.00, 0.00)"
+                },
+                {
+                    "fieldName": "hasExecuted",
+                    "fieldType": "System.Boolean",
+                    "fieldValue": "False"
+                }
+            ]
+        },
+        {
+            "nodeId": "cb02aba5-6bd4-4f23-bd51-f6b50ec5ac51",
+            "nodeName": "Move_1",
+            "nodeType": "NodeSystem.Nodes.MoveNode",
+            "nextNodeId": "",
+            "editorPosition": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "fields": [
+                {
+                    "fieldName": "targetPosition",
+                    "fieldType": "UnityEngine.Vector3",
+                    "fieldValue": "(3.00, 5.00, 2.00)"
+                },
+                {
+                    "fieldName": "nodeId",
+                    "fieldType": "System.String",
+                    "fieldValue": "cb02aba5-6bd4-4f23-bd51-f6b50ec5ac51"
+                },
+                {
+                    "fieldName": "nodeName",
+                    "fieldType": "System.String",
+                    "fieldValue": "Move_1"
+                },
+                {
+                    "fieldName": "editorPosition",
+                    "fieldType": "UnityEngine.Vector2",
+                    "fieldValue": "(0.00, 0.00)"
+                },
+                {
+                    "fieldName": "hasExecuted",
+                    "fieldType": "System.Boolean",
+                    "fieldValue": "False"
+                }
+            ]
+        }
+    ],
+    "connections": [
+        {
+            "sourceNodeId": "a0751e2d-2166-4be4-82a6-037dfd7202f3",
+            "sourcePortName": "Object",
+            "targetNodeId": "cb02aba5-6bd4-4f23-bd51-f6b50ec5ac51",
+            "targetPortName": "Object"
+        }
+    ]
+}
