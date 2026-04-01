@@ -148,11 +148,13 @@ namespace NodeSystem.Serialization
                 if (targetType == typeof(int))
                     return int.Parse(value);
                 else if (targetType == typeof(float))
-                    return float.Parse(value);
+                    return float.Parse(value, System.Globalization.CultureInfo.InvariantCulture);
                 else if (targetType == typeof(bool))
                     return bool.Parse(value);
                 else if (targetType == typeof(string))
                     return value;
+                else if (targetType.IsEnum)
+                    return System.Enum.Parse(targetType, value);
                 else if (targetType == typeof(Vector3))
                 {
                     // Input format: "(1.5, 2.5, 3.5)"
@@ -165,9 +167,9 @@ namespace NodeSystem.Serialization
                     if (parts.Length >= 3)
                     {
                         // Parse each individual element
-                        float x = float.Parse(parts[0].Trim());
-                        float y = float.Parse(parts[1].Trim());
-                        float z = float.Parse(parts[2].Trim());
+                        float x = float.Parse(parts[0].Trim(), System.Globalization.CultureInfo.InvariantCulture);
+                        float y = float.Parse(parts[1].Trim(), System.Globalization.CultureInfo.InvariantCulture);
+                        float z = float.Parse(parts[2].Trim(), System.Globalization.CultureInfo.InvariantCulture);
                         return new Vector3(x, y, z);
                     }
 

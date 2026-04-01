@@ -32,7 +32,6 @@ namespace NodeSystem
 
             nodes.Add(node);
             node.parentGraph = this;
-            // REMOVED: EditorUtility.SetDirty(this);
         }
 
         public void RemoveNode(Node node)
@@ -41,7 +40,6 @@ namespace NodeSystem
             nodes.Remove(node);
             if (startNode == node)
                 startNode = null;
-            // REMOVED: EditorUtility.SetDirty(this);
         }
 
         public List<Node> GetAllNodes() => new List<Node>(nodes);
@@ -49,7 +47,6 @@ namespace NodeSystem
         public void SetStartNode(Node node)
         {
             startNode = node;
-            // REMOVED: EditorUtility.SetDirty(this);
         }
 
         public Node GetStartNode() => startNode;
@@ -58,7 +55,6 @@ namespace NodeSystem
         {
             nodes.Clear();
             startNode = null;
-            // REMOVED: EditorUtility.SetDirty(this);
         }
 
         /// <summary>
@@ -72,7 +68,6 @@ namespace NodeSystem
             if (sourcePort != null && targetPort != null)
             {
                 sourcePort.Connect(targetPort);
-                // REMOVED: EditorUtility.SetDirty(this);
             }
         }
 
@@ -82,7 +77,6 @@ namespace NodeSystem
         public void SetNodeFlow(Node currentNode, Node nextNode)
         {
             currentNode.nextNode = nextNode;
-            // REMOVED: EditorUtility.SetDirty(this);
         }
     }
 }

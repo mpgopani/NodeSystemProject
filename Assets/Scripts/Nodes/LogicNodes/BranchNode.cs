@@ -7,8 +7,8 @@ namespace NodeSystem.Nodes
     /// </summary>
     public class BranchNode : Node
     {
-        [SerializeField] private Node ifTrueNode;
-        [SerializeField] private Node ifFalseNode;
+        [SerializeField] private string ifTrueNodeId = "";
+        [SerializeField] private string ifFalseNodeId = "";
         [SerializeField] private bool condition = false;
 
         public override void Execute()
@@ -19,12 +19,18 @@ namespace NodeSystem.Nodes
                 condition = b;
             }
 
-            Debug.Log($"[BranchNode] Condition = {condition}, routing to {(condition ? ifTrueNode?.nodeName : ifFalseNode?.nodeName)}");
+            Debug.Log($"[BranchNode] Condition = {condition}, routing to {(condition ? ifTrueNodeId : ifFalseNodeId)}");
         }
 
         public override Node GetNextNode()
         {
-            return condition ? ifTrueNode : ifFalseNode;
+            if (parentGraph == null) return null;
+            string targetId = condition ? ifTrueNodeId : ifFalseNodeId;
+            foreach (var n in parentGraph.GetAllNodes())
+            {
+                if (n.nodeId == targetId) return n;
+            }
+            return null;
         }
 
         protected override void OnEnable()

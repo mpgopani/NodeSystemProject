@@ -38,14 +38,14 @@ namespace NodeSystem.Serialization
             {
                 foreach (var outputPort in node.GetOutputPorts())
                 {
-                    if (outputPort.connectedPort != null)
+                    foreach (var connectedPort in outputPort.connections)
                     {
                         var connection = new ConnectionData
                         {
                             sourceNodeId = node.nodeId,
                             sourcePortName = outputPort.portName,
-                            targetNodeId = FindNodeIdWithPort(nodes, outputPort.connectedPort),
-                            targetPortName = outputPort.connectedPort.portName
+                            targetNodeId = FindNodeIdWithPort(nodes, connectedPort),
+                            targetPortName = connectedPort.portName
                         };
                         graphData.connections.Add(connection);
                     }
@@ -97,7 +97,8 @@ namespace NodeSystem.Serialization
                 bool isSupportedType = field.FieldType.IsPrimitive || 
                                        field.FieldType == typeof(string) || 
                                        field.FieldType == typeof(Vector2) || 
-                                       field.FieldType == typeof(Vector3);
+                                       field.FieldType == typeof(Vector3) ||
+                                       field.FieldType.IsEnum;
 
                 if (shouldSerialize && isSupportedType)
                 {

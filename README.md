@@ -83,13 +83,13 @@ Because this system embraces decoupled data inputs, you can construct massive fa
 2. In the JSON generated for the `BranchNode`, modify the hidden node references to tell the system where to jump:
 ```json
 {
-    "fieldName": "ifTrueNode",
-    "fieldType": "NodeSystem.Node",
+    "fieldName": "ifTrueNodeId",
+    "fieldType": "System.String",
     "fieldValue": "ABCD-1234"
 },
 {
-    "fieldName": "ifFalseNode",
-    "fieldType": "NodeSystem.Node",
+    "fieldName": "ifFalseNodeId",
+    "fieldType": "System.String",
     "fieldValue": "WXYZ-9876"
 }
 ```

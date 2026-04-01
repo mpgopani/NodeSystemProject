@@ -1,13 +1,13 @@
 {
-    "graphId": "c6e78e98-bb02-4b63-be11-4b6524939af3",
+    "graphId": "a75d511a-664d-4a3e-8e6b-3d8ac09a6b3c",
     "graphName": "MyGraph",
-    "startNodeId": "a0751e2d-2166-4be4-82a6-037dfd7202f3",
+    "startNodeId": "81b3edb9-5f73-49ac-b44f-f20b19bdf139",
     "nodes": [
         {
-            "nodeId": "a0751e2d-2166-4be4-82a6-037dfd7202f3",
+            "nodeId": "81b3edb9-5f73-49ac-b44f-f20b19bdf139",
             "nodeName": "CreateCube_0",
             "nodeType": "NodeSystem.Nodes.CreateCubeNode",
-            "nextNodeId": "cb02aba5-6bd4-4f23-bd51-f6b50ec5ac51",
+            "nextNodeId": "13bc1603-870e-4f66-b906-f1a152ea5a0f",
             "editorPosition": {
                 "x": 0.0,
                 "y": 0.0
@@ -21,7 +21,7 @@
                 {
                     "fieldName": "nodeId",
                     "fieldType": "System.String",
-                    "fieldValue": "a0751e2d-2166-4be4-82a6-037dfd7202f3"
+                    "fieldValue": "81b3edb9-5f73-49ac-b44f-f20b19bdf139"
                 },
                 {
                     "fieldName": "nodeName",
@@ -41,8 +41,92 @@
             ]
         },
         {
-            "nodeId": "cb02aba5-6bd4-4f23-bd51-f6b50ec5ac51",
-            "nodeName": "Move_1",
+            "nodeId": "13bc1603-870e-4f66-b906-f1a152ea5a0f",
+            "nodeName": "Branch_1",
+            "nodeType": "NodeSystem.Nodes.BranchNode",
+            "nextNodeId": "c4bb15d8-f421-494e-b65c-d51b86174b3b",
+            "editorPosition": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "fields": [
+              {
+                "fieldName": "ifTrueNodeId",
+                "fieldType": "System.String",
+                "fieldValue": "c4bb15d8-f421-494e-b65c-d51b86174b3b"
+              },
+              {
+                "fieldName": "ifFalseNodeId",
+                "fieldType": "System.String",
+                "fieldValue": "979f79b8-7819-4ca0-81c5-bffb01d41b6c"
+              },
+                {
+                    "fieldName": "condition",
+                    "fieldType": "System.Boolean",
+                    "fieldValue": "True"
+                },
+                {
+                    "fieldName": "nodeId",
+                    "fieldType": "System.String",
+                    "fieldValue": "13bc1603-870e-4f66-b906-f1a152ea5a0f"
+                },
+                {
+                    "fieldName": "nodeName",
+                    "fieldType": "System.String",
+                    "fieldValue": "Branch_1"
+                },
+                {
+                    "fieldName": "editorPosition",
+                    "fieldType": "UnityEngine.Vector2",
+                    "fieldValue": "(0.00, 0.00)"
+                },
+                {
+                    "fieldName": "hasExecuted",
+                    "fieldType": "System.Boolean",
+                    "fieldValue": "False"
+                }
+            ]
+        },
+        {
+            "nodeId": "c4bb15d8-f421-494e-b65c-d51b86174b3b",
+            "nodeName": "Scale_2",
+            "nodeType": "NodeSystem.Nodes.ScaleNode",
+            "nextNodeId": "",
+            "editorPosition": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "fields": [
+                {
+                    "fieldName": "targetScale",
+                    "fieldType": "UnityEngine.Vector3",
+                    "fieldValue": "(2.00, 2.00, 2.00)"
+                },
+                {
+                    "fieldName": "nodeId",
+                    "fieldType": "System.String",
+                    "fieldValue": "c4bb15d8-f421-494e-b65c-d51b86174b3b"
+                },
+                {
+                    "fieldName": "nodeName",
+                    "fieldType": "System.String",
+                    "fieldValue": "Scale_2"
+                },
+                {
+                    "fieldName": "editorPosition",
+                    "fieldType": "UnityEngine.Vector2",
+                    "fieldValue": "(0.00, 0.00)"
+                },
+                {
+                    "fieldName": "hasExecuted",
+                    "fieldType": "System.Boolean",
+                    "fieldValue": "False"
+                }
+            ]
+        },
+        {
+            "nodeId": "979f79b8-7819-4ca0-81c5-bffb01d41b6c",
+            "nodeName": "Move_3",
             "nodeType": "NodeSystem.Nodes.MoveNode",
             "nextNodeId": "",
             "editorPosition": {
@@ -53,17 +137,17 @@
                 {
                     "fieldName": "targetPosition",
                     "fieldType": "UnityEngine.Vector3",
-                    "fieldValue": "(3.00, 5.00, 2.00)"
+                    "fieldValue": "(5.00, 0.00, 0.00)"
                 },
                 {
                     "fieldName": "nodeId",
                     "fieldType": "System.String",
-                    "fieldValue": "cb02aba5-6bd4-4f23-bd51-f6b50ec5ac51"
+                    "fieldValue": "979f79b8-7819-4ca0-81c5-bffb01d41b6c"
                 },
                 {
                     "fieldName": "nodeName",
                     "fieldType": "System.String",
-                    "fieldValue": "Move_1"
+                    "fieldValue": "Move_3"
                 },
                 {
                     "fieldName": "editorPosition",
@@ -80,9 +164,15 @@
     ],
     "connections": [
         {
-            "sourceNodeId": "a0751e2d-2166-4be4-82a6-037dfd7202f3",
+            "sourceNodeId": "81b3edb9-5f73-49ac-b44f-f20b19bdf139",
             "sourcePortName": "Object",
-            "targetNodeId": "cb02aba5-6bd4-4f23-bd51-f6b50ec5ac51",
+            "targetNodeId": "c4bb15d8-f421-494e-b65c-d51b86174b3b",
+            "targetPortName": "Object"
+        },
+        {
+            "sourceNodeId": "81b3edb9-5f73-49ac-b44f-f20b19bdf139",
+            "sourcePortName": "Object",
+            "targetNodeId": "979f79b8-7819-4ca0-81c5-bffb01d41b6c",
             "targetPortName": "Object"
         }
     ]

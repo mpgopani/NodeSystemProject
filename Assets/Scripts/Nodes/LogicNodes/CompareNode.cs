@@ -12,8 +12,8 @@ namespace NodeSystem.Nodes
         [SerializeField] private ComparisonType comparisonType = ComparisonType.Equal;
         [SerializeField] private float valueA = 0f;
         [SerializeField] private float valueB = 0f;
-        [SerializeField] private Node trueNode;
-        [SerializeField] private Node falseNode;
+        [SerializeField] private string trueNodeId = "";
+        [SerializeField] private string falseNodeId = "";
 
         private bool lastComparisonResult = false;
 
@@ -46,7 +46,13 @@ namespace NodeSystem.Nodes
 
         public override Node GetNextNode()
         {
-            return lastComparisonResult ? trueNode : falseNode;
+            if (parentGraph == null) return null;
+            string targetId = lastComparisonResult ? trueNodeId : falseNodeId;
+            foreach (var n in parentGraph.GetAllNodes())
+            {
+                if (n.nodeId == targetId) return n;
+            }
+            return null;
         }
 
         protected override void OnEnable()

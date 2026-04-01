@@ -171,14 +171,22 @@ namespace NodeSystem.Runtime
                     var previousNode = existingNodes[existingNodes.Count - 1];
                     currentGraph.SetNodeFlow(previousNode, newNode);
 
-                    // Also connect Object ports if the previous node outputs "Object"
-                    // and the new node has an "Object" input port
-                    var prevOutput = previousNode.GetPort("Object", Port.PortType.Output);
-                    var newInput   = newNode.GetPort("Object", Port.PortType.Input);
-                    if (prevOutput != null && newInput != null)
+                    // SMART AUTO-WIRING: If the new node needs an Object, search backwards 
+                    // through the list to find the closest node that outputs one!
+                    var newInput = newNode.GetPort("Object", Port.PortType.Input);
+                    if (newInput != null)
                     {
-                        currentGraph.ConnectPorts(previousNode, "Object", newNode, "Object");
-                        Debug.Log($"🔗 Connected {previousNode.nodeName}[Object] → {newNode.nodeName}[Object]");
+                        for (int i = existingNodes.Count - 1; i >= 0; i--)
+                        {
+                            var providerNode = existingNodes[i];
+                            var prevOutput = providerNode.GetPort("Object", Port.PortType.Output);
+                            if (prevOutput != null)
+                            {
+                                currentGraph.ConnectPorts(providerNode, "Object", newNode, "Object");
+                                Debug.Log($"🔗 Connected {providerNode.nodeName}[Object] → {newNode.nodeName}[Object]");
+                                break; // Stop searching once we find the provider!
+                            }
+                        }
                     }
                 }
 

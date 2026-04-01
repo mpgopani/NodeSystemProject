@@ -57,14 +57,15 @@ namespace NodeSystem
         public object GetInputValue(string portName)
         {
             var inputPort = inputPorts.FirstOrDefault(p => p.portName == portName);
-            if (inputPort == null || inputPort.connectedPort == null)
+            if (inputPort == null || inputPort.connections.Count == 0)
                 return null;
 
             // Get the value from the connected output port's parent node
-            var sourceNode = GetNodeFromPort(inputPort.connectedPort);
+            var connectedOut = inputPort.connections[0];
+            var sourceNode = GetNodeFromPort(connectedOut);
             if (sourceNode == null) return null;
 
-            return sourceNode.GetOutputValue(inputPort.connectedPort.portName);
+            return sourceNode.GetOutputValue(connectedOut.portName);
         }
 
         /// <summary>

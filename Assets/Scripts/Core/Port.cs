@@ -16,8 +16,8 @@ namespace NodeSystem
         public PortType portType = PortType.Output;
         public System.Type dataType = typeof(object);
 
-        // Runtime connection - which node's port is this connected to?
-        [NonSerialized] public Port connectedPort;
+        // Runtime connections - this allows 1-to-Many output routing!
+        [NonSerialized] public List<Port> connections = new List<Port>();
 
         public enum PortType { Input, Output }
 
@@ -32,7 +32,7 @@ namespace NodeSystem
         }
 
         /// <summary>
-        /// Connects two ports together.
+        /// Connects two ports together (supports 1-to-many outputs).
         /// </summary>
         public void Connect(Port otherPort)
         {
@@ -42,17 +42,30 @@ namespace NodeSystem
                 Debug.LogError($"Cannot connect {portType} to {otherPort.portType}");
                 return;
             }
-            connectedPort = otherPort;
-            otherPort.connectedPort = this;
+            
+            if (!connections.Contains(otherPort))
+                connections.Add(otherPort);
+                
+            if (!otherPort.connections.Contains(this))
+                otherPort.connections.Add(this);
         }
 
-        public void Disconnect()
+        public void Disconnect(Port specificPort = null)
         {
-            if (connectedPort != null)
+            if (specificPort == null)
             {
-                connectedPort.connectedPort = null;
+                // Disconnect from ALL
+                foreach (var p in new List<Port>(connections))
+                {
+                    p.connections.Remove(this);
+                }
+                connections.Clear();
             }
-            connectedPort = null;
+            else
+            {
+                connections.Remove(specificPort);
+                specificPort.connections.Remove(this);
+            }
         }
     }
 }
